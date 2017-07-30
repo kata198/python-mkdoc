@@ -8,8 +8,9 @@
 #
 #    If you did not recieve a copy of the license as LICENSE with this distribution,
 #      it can be found at: https://github.com/kata198/python-mkdoc/blob/master/LICENSE
-#       
-
+#
+#  You MAY redistribute this script and modify the "DEFAULT_PROJECT_NAME" line to match your project,
+#    without open-sourcing your entire project. That single line is considered "public domain" for this reason.
 
 # mkpydoc.sh - Generate pydoc for an arbitrary project (via argument), or
 #              if DEFAULT_PROJECT_NAME is set within this file then
@@ -20,6 +21,9 @@
 #    (i.e. the folder containing the highest-level __init__.py)
 #
 #    This will be used in lieu of an argument (so just running ./mkpydoc.sh vs ./mkpydoc.sh "myFolderName")
+#
+#  The single line below (DEFAULT_PROJECT_NAME=...) is considered public domain and may be modified and redistributed
+#    without the restrictions of the GPL. All other lines are GPLv3
 DEFAULT_PROJECT_NAME="YOUR_PROJECT_DIR_HERE"
 
 if [ -z "$1" ];
