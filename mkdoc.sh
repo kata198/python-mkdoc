@@ -114,13 +114,28 @@ pydoc -w ${ALL_MODS}
 
 note_action "Preparing 'doc' dir\n"
 mkdir -p doc
-rm -f doc/index.html
 
-note_action "Converting absolute local paths to relative web-safe paths...\n"
+python -c "import AdvancedHTMLParser"
+HAS_ADVANCED_HTML_PARSER_MOD=$?
+
+if [ ${HAS_ADVANCED_HTML_PARSER_MOD} -ne 0 ];
+then
+    note_failure "Python module AdvancedHTMLParser is not found!\n"
+    note_failure "  Cannot convert local paths to relative web-safe paths or other cleanup tasks.\n\n"
+else
+    note_action "Converting absolute local paths to relative web-safe paths...\n"
+fi
+
+# TASK: Iterate through each generated file, clean up (assuming AdvancedHTMLParser is present),
+#         and move into "doc" directory.
+
 for fnamePy in ${ALL_FILES};
 do
     fname="$(echo "${fnamePy}" | sed 's/.py$/.html/g' | tr '/' '.' | sed 's/\.__init__//g' )"
-    python <<EOT
+
+    if [ "${HAS_ADVANCED_HTML_PARSER_MOD}" -eq 0 ];
+    then
+        python <<EOT
 
 import AdvancedHTMLParser
 import sys
@@ -156,19 +171,33 @@ if __name__ == '__main__':
         f.write(parser.getHTML())
 
 EOT
-    RET=$?
+        RET=$?
 
-    if [ "${RET}" -ne 0 ];
-    then
-        note_failure "Failed to clean up \"%s\" (from \"%s\"). Exit code: %d\n" "${fname}" "${fnamePy}" "${RET}"
+        if [ "${RET}" -ne 0 ];
+        then
+            note_failure "Failed to clean up \"%s\" (from \"%s\"). Exit code: %d\n" "${fname}" "${fnamePy}" "${RET}"
+        fi
     fi
 
     mv "${fname}" 'doc/'
+    if [ $? -ne 0 ];
+    then
+        note_failure "Failed to move \"%s\" into \"doc\" directory.\n" "${fname}"
+    fi
 
 done
 
+#  TASK: prepare to be ready to zip up for upload by symlinking index.html to main module pydoc
+
 pushd "doc" >/dev/null 2>&1
 
-ln -s ${PROJECT_NAME}.html index.html
+rm -f index.html
+if [ $? -ne 0 ];
+then
+    note_failure "Failed to remove doc/index.html in order to re-link\n"
+else
+    ln -s ${PROJECT_NAME}.html index.html
+fi
+
 
 popd >/dev/null 2>&1
