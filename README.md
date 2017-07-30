@@ -1,4 +1,6 @@
-# python-mkdoc
+python-mkdoc
+============
+
 An amazing helper script to generate pydoc for your python projects.
 
 Running the script ( *mkpydoc.sh* ) from the root directory of your project will generate pydoc for all module components (and they will link to eachother) into the "doc" directory, as well as creating an index.html -- ready to zip up and upload to pythonhosted.org via pypi
