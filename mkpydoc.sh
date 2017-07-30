@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set ts=4 sw=4 st=4 expandtab
 
-#  mkdoc.sh - 
+#  mkpydoc.sh - 
 #    Copyright (c) 2015, 2016, 2017 Timothy Savannah, All Rights Reserved
 #
 #   Licensed under the terms of the GNU General Purpose License (GPL) Version 3.0
@@ -11,7 +11,7 @@
 #       
 
 
-# mkdoc.sh - Generate pydoc for an arbitrary project (via argument), or
+# mkpydoc.sh - Generate pydoc for an arbitrary project (via argument), or
 #              if DEFAULT_PROJECT_NAME is set within this file then
 #               this script can be copied into your project's root directory
 #               and executed without argment to generate using thatname.
@@ -19,7 +19,7 @@
 # DEFAULT_PROJECT_NAME - Set to the name of the folder containing your package
 #    (i.e. the folder containing the highest-level __init__.py)
 #
-#    This will be used in lieu of an argument (so just running ./mkdoc.sh vs ./mkdoc.sh "myFolderName")
+#    This will be used in lieu of an argument (so just running ./mkpydoc.sh vs ./mkpydoc.sh "myFolderName")
 DEFAULT_PROJECT_NAME="YOUR_PROJECT_DIR_HERE"
 
 if [ -z "$1" ];
