@@ -17,6 +17,9 @@
 #               this script can be copied into your project's root directory
 #               and executed without argment to generate using thatname.
 
+
+_PYTHON_MKDOC_VERSION="0.1.0"
+
 # DEFAULT_PROJECT_NAME - Set to the name of the folder containing your package
 #    (i.e. the folder containing the highest-level __init__.py)
 #
