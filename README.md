@@ -1,5 +1,4 @@
-python-mkdoc
-============
+# python-mkdoc
 
 An amazing helper script to generate pydoc for your python projects.
 
@@ -62,11 +61,11 @@ Further Actions
 
 After generating the pydoc, you can prepare it for upload to pythonhosted.org (via pypi.python.org) with the following:
 
-# Navigate into the "doc" directory
+1 Navigate into the "doc" directory
 
-# Execute *zip doc.zip \*.html*
+1 Execute *zip doc.zip \*.html*
 
-# Navigate to pypi.python.org and login. On the sidebar, select your project. Click "releases" at the top. At the bottom is a form where you can upload the "doc.zip" you created above
+1 Navigate to pypi.python.org and login. On the sidebar, select your project. Click "releases" at the top. At the bottom is a form where you can upload the "doc.zip" you created above
 
 
 You may also want to consider adding the following line to your *MANIFEST.in*
